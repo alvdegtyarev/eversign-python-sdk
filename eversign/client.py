@@ -410,9 +410,16 @@ class Client(object):
             params['access_key'] = self.access_key
             params['business_id'] = self.business_id
 
-            response = requests.post(url, files={
-                'upload': open(path, 'rb')
-            }, params=params)
+            if path.endswith('.pdf'): 
+                file = open(path, 'rb')
+            else:
+                file =(path, open(path, 'rb'), 'application/pdf')
+            
+            response = requests.post(
+                url, 
+                files={'upload': file}, 
+                params=params
+            )
 
         except requests.exceptions.RequestException:
             raise
