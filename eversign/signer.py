@@ -37,5 +37,7 @@ class SignerModel(Model):
     embedded_signing_url = StringType()
     deliver_email = BoolIntType()
 
+    language = StringType()
+
     class Options:
         serialize_when_none = False
