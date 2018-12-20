@@ -411,9 +411,10 @@ class Client(object):
             params['business_id'] = self.business_id
 
             if path.endswith('.pdf'): 
-                file = open(path, 'rb')
+                file = (path, open(path, 'rb'), 'application/pdf')
+            
             else:
-                file =(path, open(path, 'rb'), 'application/pdf')
+                file = open(path, 'rb')
             
             response = requests.post(
                 url, 
